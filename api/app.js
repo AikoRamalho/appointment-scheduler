@@ -20,9 +20,9 @@ mongoose.connect('aiko:123@ds247449.mlab.com:47449/appointments', {
 app.all('/*', function(req, res, next) {
   //Cors headers
   res.header("Access-Control-Allow-Origin", "*"); //restrict it to the required domain
-  res.header("Access-Controll-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
+  res.header("Access-Controll-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");//permit all this req options
   //set custom headers for cors
-  res.header("Access-Control-Allow-Headers", 'Content-type,Accept, X-Access-Token,X-Key')
+  res.header("Access-Control-Allow-Headers", 'Content-type,Accept, X-Access-Token,X-Key')//req headers server supports
   if(req.method=='OPTIONS'){
     res.status(200).end();
   }else{
