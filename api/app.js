@@ -16,6 +16,20 @@ mongoose.connect('aiko:123@ds247449.mlab.com:47449/appointments', {
   useMongoClient: true
 });
 
+//enabling cors
+app.all('/*', function(req, res, next) {
+  //Cors headers
+  res.header("Access-Control-Allow-Origin", "*"); //restrict it to the required domain
+  res.header("Access-Controll-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
+  //set custom headers for cors
+  res.header("Access-Control-Allow-Headers", 'Content-type,Accept, X-Access-Token,X-Key')
+  if(req.method=='OPTIONS'){
+    res.status(200).end();
+  }else{
+    next();
+  }
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
