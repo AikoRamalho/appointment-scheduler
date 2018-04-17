@@ -13,9 +13,7 @@ var app = express();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('aiko:123@ds247449.mlab.com:47449/appointments', {
-  useMongoClient: true
-});
+mongoose.connect('mongodb://aiko:123@ds247449.mlab.com:47449/appointments');
 
 //enabling cors
 app.all('/*', function(req, res, next) {
