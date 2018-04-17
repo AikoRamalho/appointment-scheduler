@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 const api = require('./routes/api/index');
+const usersRouter = require('./routes/users');
 
 var app = express();
 
