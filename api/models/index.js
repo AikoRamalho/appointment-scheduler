@@ -24,6 +24,5 @@ const appointmentSchema  = new Schema({
 const Appointment = model('Appointment', appointmentSchema);
 
 module.exports = {
-  Appointment,
-  Slot
-}
+  Appointment, Slot
+};

@@ -15,7 +15,7 @@ const appointmentController = {
       slot_date: requestBody.slot_date,
       created_at: Date.now()
     });
-    newslote.save()
+    newslot.save()
     //Creates a new record from a submitted form
     var newappointment = new Appointment({
       name: requestBody.name,
@@ -43,8 +43,8 @@ const appointmentController = {
         .populate('slots')
         .exec((err, appointment)=>res.json(appointment));
 
-      const from = VIRTUAL_NUMBER;
-      const to = RECIPIENT_NUMBER;
+      const from = "My App";
+      const to = 5521993028426;
 
       nexmo.message.sendSms(from, to, msg, (err, responseData)=>{
         if(err){
