@@ -54,7 +54,7 @@ const appointmentController = {
       " " + 
       "this is the message to confirm your appointment at" +
       " " +
-      requestBody.appointment;
+      requestBody.slot_date;
     
     //and saves the record to the database
     newappointment.save((err, saved)=>{
