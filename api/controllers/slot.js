@@ -1,5 +1,6 @@
 const Model = require('../models/index')
 
+var ObjectId = require('mongodb').ObjectId;
 const {Appointment, Slot} = Model;
 
 const slotController = {
@@ -22,6 +23,28 @@ const slotController = {
         .findOne({_id: saved_id})
         .exec((err, slot)=>res.json(slot));
     })
+  },
+  delete(req, res) {
+    console.log(req.params._id);
+    console.log(req.params);
+    Slot.findByIdAndRemove(req.params._id)
+      .then(slot=>{
+        if(!slot){
+          return res.status(404).send({
+            message: 'Slot not found with _id: ' + req.params._id
+          });
+        }
+        res.send({message: "Slot deleted!"});
+      }).catch(err=>{
+        if(err.kind === "ObjectId" || err.name === 'NotFound'){
+          return res.status(404).send({
+            message: 'Slot not found with id: ' + req.params._id
+          });
+        } 
+        return res.status(500).send({
+          message: "Couldn't delete slot with id: " + req.params._id
+        });
+      });
   },
   findByDate(req, res) {
     var slot_date = req.params.slot_date;

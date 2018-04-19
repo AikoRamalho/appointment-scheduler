@@ -7,6 +7,26 @@ const appointmentController = {
   all(req, res){
     Appointment.find({}).exec((err, appointment)=>res.json(appointment));
   },
+  delete(req, res){
+    Appointment.findByIdAndRemove(req.params.id)
+      .then(appointment=>{
+        if(!appointment){
+          return res.status(404).send({
+            message: 'Appointment not found with id: ' + req.params.id
+          });
+        }
+        res.send({message: 'appointment deleted'});
+      }).catch(err=>{
+        if(err.kind === "ObjectId" || err.name === "NotFound"){
+          return res.status(404).send({
+            message: 'Appointment not found with id: ' + req.params.id
+          });
+        }
+        return res.status(500).send({
+          message: 'Coulnt retrieve appointment with id: ' + req.params.id
+        });
+      });
+  },
   create(req, res){
     var requestBody = req.body;
 
